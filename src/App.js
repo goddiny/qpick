@@ -1,25 +1,91 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import ProductsPage from "./pages/ProductsPage";
 
-function App() {
+import styles from "./App.module.scss";
+
+const App = () => {
+  const INITIAL_CATEGORIES = [
+    { title: "Наушники", index: 0 },
+    { title: "Беспроводные наушники", index: 1 },
+  ];
+
+  const INITIAL_PRODUCTS = [
+    {
+      img: "../../assets/img/S852.png",
+      title: "Apple BYZ S852I",
+      price: 2927,
+      rate: 4.7,
+      category: 0,
+    },
+    {
+      img: "../../assets/img/earpods.png",
+      title: "Apple EarPods",
+      price: 2327,
+      rate: 4.5,
+      category: 0,
+    },
+    {
+      img: "../../assets/img/earpodsincase.png",
+      title: "Apple EarPods",
+      price: 2327,
+      rate: 4.5,
+      category: 0,
+    },
+    {
+      img: "../../assets/img/S852.png",
+      title: "Apple BYZ S852I",
+      price: 2927,
+      rate: 4.7,
+      category: 0,
+    },
+    {
+      img: "../../assets/img/earpods.png",
+      title: "Apple EarPods",
+      price: 2327,
+      rate: 4.5,
+      category: 0,
+    },
+    {
+      img: "../../assets/img/earpodsincase.png",
+      title: "Apple EarPods",
+      price: 2327,
+      rate: 4.5,
+      category: 0,
+    },
+    {
+      img: "../../assets/img/airpods.png",
+      title: "Apple AirPods",
+      price: 9527,
+      rate: 4.7,
+      category: 1,
+    },
+    {
+      img: "../../assets/img/airpodspro.png",
+      title: "GERLAX GH-04",
+      price: 6527,
+      rate: 4.7,
+      category: 1,
+    },
+    {
+      img: "../../assets/img/borofone.png",
+      title: "BOROFONE BO4",
+      price: 7527,
+      rate: 4.7,
+      category: 1,
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <div className={styles.container}>
+        <Header />
+        <ProductsPage
+          categories={INITIAL_CATEGORIES}
+          products={INITIAL_PRODUCTS}
+        />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
