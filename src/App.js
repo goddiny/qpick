@@ -1,7 +1,10 @@
 import Header from "./components/Header";
 import ProductsPage from "./pages/ProductsPage";
-
+import Footer from "./components/Footer";
 import styles from "./App.module.scss";
+import Cart from "./components/Cart";
+import ItemContext from "./components/ItemContext";
+import { useState } from "react";
 
 const App = () => {
   const INITIAL_CATEGORIES = [
@@ -11,63 +14,72 @@ const App = () => {
 
   const INITIAL_PRODUCTS = [
     {
-      img: "../../assets/img/S852.png",
+      id: 0,
+      img: "./assets/S852.png",
       title: "Apple BYZ S852I",
       price: 2927,
       rate: 4.7,
       category: 0,
     },
     {
-      img: "../../assets/img/earpods.png",
+      id: 1,
+      img: "./assets/earpods.png",
       title: "Apple EarPods",
       price: 2327,
       rate: 4.5,
       category: 0,
     },
     {
-      img: "../../assets/img/earpodsincase.png",
+      id: 2,
+      img: "./assets/earpodsincase.png",
       title: "Apple EarPods",
       price: 2327,
       rate: 4.5,
       category: 0,
     },
     {
-      img: "../../assets/img/S852.png",
+      id: 3,
+      img: "./assets/S852.png",
       title: "Apple BYZ S852I",
       price: 2927,
       rate: 4.7,
       category: 0,
     },
     {
-      img: "../../assets/img/earpods.png",
+      id: 4,
+      img: "./assets/earpods.png",
       title: "Apple EarPods",
       price: 2327,
       rate: 4.5,
       category: 0,
     },
     {
-      img: "../../assets/img/earpodsincase.png",
+      id: 5,
+      img: "./assets/earpodsincase.png",
       title: "Apple EarPods",
       price: 2327,
       rate: 4.5,
       category: 0,
     },
     {
-      img: "../../assets/img/airpods.png",
+      id: 6,
+      img: "./assets/airpods.png",
       title: "Apple AirPods",
       price: 9527,
       rate: 4.7,
       category: 1,
     },
     {
-      img: "../../assets/img/airpodspro.png",
+      id: 7,
+      img: "./assets/airpodspro.png",
       title: "GERLAX GH-04",
       price: 6527,
       rate: 4.7,
       category: 1,
     },
     {
-      img: "../../assets/img/borofone.png",
+      id: 8,
+      img: "./assets/borofone.png",
       title: "BOROFONE BO4",
       price: 7527,
       rate: 4.7,
@@ -75,16 +87,24 @@ const App = () => {
     },
   ];
 
+  const [cartItems, setCartItems] = useState({});
+
   return (
-    <div className={styles.app}>
-      <div className={styles.container}>
-        <Header />
-        <ProductsPage
-          categories={INITIAL_CATEGORIES}
-          products={INITIAL_PRODUCTS}
-        />
+    <ItemContext.Provider value={{ cartItems, setCartItems }}>
+      <div className={styles.app}>
+        <div className={styles.container}>
+          <div>
+            <Header />
+            <ProductsPage
+              categories={INITIAL_CATEGORIES}
+              products={INITIAL_PRODUCTS}
+            />
+            <Cart/>
+          </div>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </ItemContext.Provider>
   );
 };
 

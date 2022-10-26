@@ -1,10 +1,24 @@
 import styles from "./Products.module.scss";
 import ProductItem from "../ProductItem";
+import { useContext } from "react";
+import ItemContext from "../ItemContext";
 
 const Products = ({ title, category, products }) => {
-  console.log(title);
-  console.log(category);
-  console.log(products);
+  const { cartItems, setCartItems } = useContext(ItemContext);
+
+  const onAddCartItem = (product) => {
+    product.id in cartItems
+      ? (cartItems[product.id] += 1)
+      : (cartItems[product.id] = 1);
+
+    console.log(
+      Object.values(cartItems).reduce((sum, elem) => {
+        return sum + elem;
+      }, 0)
+    );
+    setCartItems(cartItems);
+  };
+
   return (
     <>
       <p className={styles.title}>{title}</p>
@@ -17,10 +31,9 @@ const Products = ({ title, category, products }) => {
           })
           .map((product) => (
             <ProductItem
-              img={product.img}
-              title={product.title}
-              price={product.price}
-              rate={product.rate}
+              key={product.id}
+              product={product}
+              onAddCartItem={onAddCartItem}
             />
           ))}
       </div>
